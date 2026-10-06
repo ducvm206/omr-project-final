@@ -1,0 +1,152 @@
+# ==========================================
+# Python & FastAPI
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv/
+
+# FastAPI / Testing / Logs
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.ipynb_checkpoints
+*.log
+.env
+.env.*
+!.env.example
+
+
+# ==========================================
+# Java & Spring Boot (Gradle / Maven)
+# ==========================================
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+pom.xml.backup
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+# Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+gradlew
+gradlew.bat
+
+# Spring Boot specific
+*.h2.db
+*.sqlite
+logs/
+
+
+# ==========================================
+# Kotlin Mobile / Android
+# ==========================================
+# Built application files
+*.apk
+*.aar
+*.aab
+*.dex
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+.navigation/
+
+# Android Studio & IntelliJ
+.idea/
+*.iml
+*.iws
+*.ipr
+.gradle/
+local.properties
+.cls
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+
+# ==========================================
+# Node.js / React / Vue (Frontend)
+# ==========================================
+node_modules/
+jspm_packages/
+.npm
+.eslintcache
+.stylelintcache
+.parcel-cache
+
+# Production builds
+dist/
+build/
+.output/
+.nuxt/
+.vuepress/dist
+.temp/
+.cache/
+
+
+# ==========================================
+# OS Generated & Editors
+# ==========================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# Editors (VS Code, Sublime, etc.)
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.sublime-project
+.sublime-workspace
