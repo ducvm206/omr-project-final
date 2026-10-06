@@ -1,0 +1,116 @@
+/* src/components/features/Template/TemplateConfigPanel.css */
+
+.template-config {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.1rem 1.25rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid #cfe0f5;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.template-config__header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.template-config__header-icon {
+    color: #2563eb;
+    font-size: 1.05rem;
+}
+
+.template-config__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+/* Two numeric fields side by side */
+
+.template-config__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+@media (max-width: 480px) {
+    .template-config__row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Checkboxes */
+
+.template-config__checks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 0.25rem;
+}
+
+.template-config__check {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.88rem;
+    color: #1e3a5f;
+    cursor: pointer;
+    user-select: none;
+}
+
+.template-config__check:hover {
+    background: #f5f8fd;
+}
+
+.template-config__check input[type='checkbox'] {
+    width: 16px;
+    height: 16px;
+    accent-color: #2563eb;
+    cursor: pointer;
+    margin: 0;
+}
+
+.template-config__check-icon {
+    color: #4a688a;
+    font-size: 0.85rem;
+}
+
+.template-config__check-label {
+    line-height: 1.2;
+}
+
+.template-config__check--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.template-config__check--disabled input[type='checkbox'] {
+    cursor: not-allowed;
+}
+
+/* Form-level error */
+
+.template-config__error {
+    padding: 0.5rem 0.7rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    color: #b91c1c;
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+/* Actions */
+
+.template-config__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-top: 0.25rem;
+}

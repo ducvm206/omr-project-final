@@ -1,0 +1,121 @@
+/* src/components/features/Course/CourseStudentsTab.css */
+
+.course-students {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: inherit;
+}
+
+.course-students__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.course-students__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.course-students__heading-icon {
+    color: #4a688a;
+    font-size: 0.9rem;
+}
+
+.course-students__title {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.course-students__count {
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+/* List */
+
+.course-students__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.5rem;
+}
+
+.course-students__item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.55rem 0.75rem;
+    background: #ffffff;
+    border: 1px solid #e5eefb;
+    border-radius: 4px;
+    min-width: 0;
+}
+
+.course-students__item--clickable {
+    cursor: pointer;
+}
+
+.course-students__item--clickable:hover {
+    border-color: #2563eb;
+    background: #f8fbff;
+}
+
+.course-students__item--clickable:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.course-students__avatar {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #eaf2fd;
+    color: #2563eb;
+    border-radius: 50%;
+    font-size: 0.75rem;
+}
+
+.course-students__info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.05rem;
+    min-width: 0;
+    flex: 1 1 auto;
+}
+
+.course-students__name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e3a5f;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.course-students__id {
+    font-size: 0.75rem;
+    color: #4a688a;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+

@@ -1,0 +1,124 @@
+/* src/components/common/Input.css */
+
+.input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-family: inherit;
+}
+
+.input--full {
+    width: 100%;
+}
+
+.input__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e3a5f;
+}
+
+.input__required {
+    color: #dc2626;
+}
+
+.input__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input__icon {
+    position: absolute;
+    left: 0.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #8aa3c0;
+    font-size: 0.9rem;
+    pointer-events: none;
+    line-height: 1;
+}
+
+.input__field {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #1e293b;
+    background: #ffffff;
+    border: 1px solid #b6cbe5;
+    border-radius: 4px;
+}
+
+/* Shift text so it doesn't overlap the icon. */
+.input__wrapper .input__icon ~ .input__field {
+    padding-left: 2rem;
+}
+
+.input__field::placeholder {
+    color: #8aa3c0;
+}
+
+.input__field:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.input__field:disabled {
+    background: #f1f5fb;
+    color: #8aa3c0;
+    cursor: not-allowed;
+}
+
+/* Error state */
+
+.input--error .input__field {
+    border-color: #dc2626;
+}
+
+.input--error .input__field:focus {
+    border-color: #dc2626;
+}
+
+.input__error {
+    font-size: 0.78rem;
+    color: #dc2626;
+    line-height: 1.4;
+}
+
+.input__hint {
+    font-size: 0.78rem;
+    color: #4a688a;
+    line-height: 1.4;
+}
+
+/* File input tweaks */
+
+.input__field[type='file'] {
+    padding: 0.35rem 0.5rem;
+    cursor: pointer;
+}
+
+.input__field[type='file']::file-selector-button {
+    margin-right: 0.6rem;
+    padding: 0.3rem 0.7rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: #1e3a5f;
+    background: #eaf2fd;
+    border: 1px solid #b6cbe5;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.input__field[type='file']::file-selector-button:hover {
+    background: #dbe9fb;
+    border-color: #2563eb;
+    color: #1d4ed8;
+}
+
+.input--disabled .input__field[type='file']::file-selector-button {
+    opacity: 0.6;
+    cursor: not-allowed;
+}

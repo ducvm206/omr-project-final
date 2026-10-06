@@ -1,0 +1,95 @@
+/* src/components/common/ErrorState.css */
+
+.error-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #7f1d1d;
+    font-family: inherit;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 6px;
+}
+
+.error-state--md {
+    padding: 2rem 1.5rem;
+    gap: 0.5rem;
+}
+
+.error-state--sm {
+    padding: 1rem 1rem;
+    gap: 0.35rem;
+}
+
+.error-state__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #dc2626;
+    line-height: 1;
+}
+
+.error-state--md .error-state__icon {
+    font-size: 1.75rem;
+    margin-bottom: 0.15rem;
+}
+
+.error-state--sm .error-state__icon {
+    font-size: 1.25rem;
+}
+
+.error-state__title {
+    font-weight: 600;
+    color: #7f1d1d;
+}
+
+.error-state--md .error-state__title {
+    font-size: 1rem;
+}
+
+.error-state--sm .error-state__title {
+    font-size: 0.9rem;
+}
+
+.error-state__message {
+    color: #991b1b;
+    max-width: 44ch;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.error-state--md .error-state__message {
+    font-size: 0.875rem;
+}
+
+.error-state--sm .error-state__message {
+    font-size: 0.8rem;
+}
+
+.error-state__action {
+    margin-top: 0.6rem;
+}
+
+.error-state__retry {
+    padding: 0.4rem 0.9rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #ffffff;
+    background: #dc2626;
+    border: 1px solid #dc2626;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.error-state__retry:hover {
+    background: #b91c1c;
+    border-color: #b91c1c;
+}
+
+.error-state__retry:focus-visible {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+}

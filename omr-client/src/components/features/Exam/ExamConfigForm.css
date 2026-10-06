@@ -1,0 +1,206 @@
+/* src/components/features/Exam/ExamConfigForm.css */
+
+.exam-config {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-family: inherit;
+}
+
+/* Mode chips — a single inline row */
+
+.exam-config__modes {
+    display: inline-flex;
+    gap: 0.35rem;
+    padding: 0.25rem;
+    background: #f5f8fd;
+    border: 1px solid #dbe9fb;
+    border-radius: 6px;
+    align-self: flex-start;
+}
+
+.exam-config__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.75rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #1e3a5f;
+    cursor: pointer;
+}
+
+.exam-config__chip:hover:not(:disabled) {
+    color: #1d4ed8;
+}
+
+.exam-config__chip--active {
+    background: #ffffff;
+    border-color: #b6cbe5;
+    color: #1d4ed8;
+}
+
+.exam-config__chip:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.exam-config__chip:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Rows of fields */
+
+.exam-config__row {
+    display: grid;
+    gap: 0.6rem;
+}
+
+.exam-config__row--name-template {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.exam-config__row--3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.exam-config__row--4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+@media (max-width: 720px) {
+    .exam-config__row--name-template,
+    .exam-config__row--3 {
+        grid-template-columns: 1fr;
+    }
+
+    .exam-config__row--4 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 420px) {
+    .exam-config__row--4 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Select field */
+
+.exam-config__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.exam-config__label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #1e3a5f;
+}
+
+.exam-config__select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.42rem 0.55rem;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #1e293b;
+    background: #ffffff;
+    border: 1px solid #b6cbe5;
+    border-radius: 4px;
+}
+
+.exam-config__select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.exam-config__select:disabled {
+    background: #f1f5fb;
+    color: #8aa3c0;
+    cursor: not-allowed;
+}
+
+.exam-config__field-error {
+    font-size: 0.72rem;
+    color: #dc2626;
+    line-height: 1.3;
+}
+
+/* Hint line */
+
+.exam-config__hint {
+    margin: 0;
+    font-size: 0.78rem;
+    color: #4a688a;
+    line-height: 1.4;
+}
+
+.exam-config__hint strong {
+    color: #1e3a5f;
+    font-variant-numeric: tabular-nums;
+}
+
+/* Form-level error */
+
+.exam-config__error {
+    padding: 0.45rem 0.65rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    color: #b91c1c;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+/* Actions */
+
+.exam-config__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    padding-top: 0.35rem;
+    border-top: 1px solid #e5eefb;
+    margin-top: 0.25rem;
+}
+
+/* Config block */
+.exam-config__config {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* Keys block */
+.exam-config__keys {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #e5eefb;
+}
+
+.exam-config__keys-title {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.exam-config__keys-error {
+    padding: 0.5rem 0.7rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    color: #b91c1c;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}

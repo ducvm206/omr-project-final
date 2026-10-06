@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMR Control Panel</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="panel">
+        <!-- Header -->
+        <header>
+            <h1><span class="accent">◼</span> OMR CONTROL PANEL</h1>
+            <div class="status-badge" id="statusBadge">
+                <span class="dot" id="statusDot"></span>
+                <span id="statusText">CONNECTING...</span>
+            </div>
+        </header>
+
+        <!-- Three column layout -->
+        <div class="grid">
+            <!-- Column 1: Server Status -->
+            <section class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="icon">■</span>
+                        <h2>Server Status</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="stat-row">
+                            <span class="label">Status</span>
+                            <span class="value" id="serverStatus">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label">Uptime</span>
+                            <span class="value" id="uptime">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label">Requests</span>
+                            <span class="value" id="requestCount">0</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label">Model</span>
+                            <span class="value" id="modelStatus">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label">Input</span>
+                            <span class="value mono" id="inputShape">-</span>
+                        </div>
+                        <div class="stat-row">
+                            <span class="label">Output</span>
+                            <span class="value mono" id="outputShape">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Column 2: Prediction Test -->
+            <section class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="icon">■</span>
+                        <h2>Prediction Test</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="upload-box" id="uploadBox">
+                            <span class="upload-icon">▼</span>
+                            <p>Drop Image / Click</p>
+                            <span class="hint">32×32 GRAYSCALE</span>
+                            <input type="file" id="fileInput" accept="image/*">
+                        </div>
+                        <div class="result-box" id="resultBox" style="display:none;">
+                            <div class="result-preview">
+                                <img id="previewImg" src="" alt="preview">
+                            </div>
+                            <div class="result-details">
+                                <div class="result-digit">
+                                    <span class="digit-label">Digit</span>
+                                    <span class="digit-value" id="predDigit">-</span>
+                                </div>
+                                <div class="result-conf">
+                                    <span class="conf-label">Confidence</span>
+                                    <div class="conf-bar">
+                                        <div class="conf-fill" id="confFill"></div>
+                                    </div>
+                                    <span class="conf-value" id="confText">0%</span>
+                                </div>
+                                <div class="result-probs" id="probsContainer"></div>
+                                <button class="btn-test" id="testAgain">↺ Test Again</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Column 3: Server Logs -->
+            <section class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="icon">■</span>
+                        <h2>Server Logs</h2>
+                        <button class="btn-clear" id="clearLogs">✕</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="log-container" id="logContainer">
+                            <div class="log-empty">No logs</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="websocket.js"></script>
+    <script>
+        // ============================================================
+        // APP
+        // ============================================================
+
+        const API = window.location.origin;
+        let startTime = Date.now();
+        let requestCount = 0;
+        let logs = [];
+
+        // ---- DOM refs ----
+        const $ = id => document.getElementById(id);
+        const statusDot = $('statusDot');
+        const statusText = $('statusText');
+        const serverStatus = $('serverStatus');
+        const uptime = $('uptime');
+        const requestCountEl = $('requestCount');
+        const modelStatus = $('modelStatus');
+        const inputShape = $('inputShape');
+        const outputShape = $('outputShape');
+        const uploadBox = $('uploadBox');
+        const fileInput = $('fileInput');
+        const resultBox = $('resultBox');
+        const previewImg = $('previewImg');
+        const predDigit = $('predDigit');
+        const confFill = $('confFill');
+        const confText = $('confText');
+        const probsContainer = $('probsContainer');
+        const logContainer = $('logContainer');
+        const testAgain = $('testAgain');
+        const clearLogsBtn = $('clearLogs');
+
+        // ---- Init ----
+        function init() {
+            fetchStatus();
+            fetchModelInfo();
+            setupUpload();
+            setupTestAgain();
+            setupClearLogs();
+            setInterval(updateUptime, 1000);
+            setInterval(fetchStatus, 10000);
+        }
+
+        // ---- Status ----
+        function setStatus(online) {
+            statusDot.className = 'dot' + (online ? ' online' : ' offline');
+            statusText.textContent = online ? 'ONLINE' : 'OFFLINE';
+            serverStatus.textContent = online ? 'RUNNING' : 'DISCONNECTED';
+        }
+
+        async function fetchStatus() {
+            try {
+                const res = await fetch(API + '/eg/health');
+                const data = await res.json();
+                setStatus(true);
+                if (data.model_loaded) {
+                    modelStatus.textContent = '✓ LOADED';
+                    modelStatus.style.color = '#22c55e';
+                } else {
+                    modelStatus.textContent = '✗ NOT LOADED';
+                    modelStatus.style.color = '#ef4444';
+                }
+            } catch (_) {
+                setStatus(false);
+                modelStatus.textContent = '✗ ERROR';
+                modelStatus.style.color = '#ef4444';
+            }
+        }
+
+        async function fetchModelInfo() {
+            try {
+                const res = await fetch(API + '/eg/model-info');
+                const data = await res.json();
+                inputShape.textContent = data.input_shape || '-';
+                outputShape.textContent = data.output_shape || '-';
+            } catch (_) {}
+        }
+
+        function updateUptime() {
+            const s = Math.floor((Date.now() - startTime) / 1000);
+            const h = String(Math.floor(s / 3600)).padStart(2, '0');
+            const m = String(Math.floor((s % 3600) / 60)).padStart(2, '0');
+            const sec = String(s % 60).padStart(2, '0');
+            uptime.textContent = h + ':' + m + ':' + sec;
+        }
+
+        // ---- Requests ----
+        function addRequest(req) {
+            requestCount++;
+            requestCountEl.textContent = requestCount;
+        }
+
+        // ---- Logs ----
+        function addLog(log) {
+            logs.unshift(log);
+            renderLogs();
+        }
+
+        function renderLogs() {
+            if (logs.length === 0) {
+                logContainer.innerHTML = '<div class="log-empty">No logs</div>';
+                return;
+            }
+            const html = logs.slice(0, 100).map(l => {
+                const t = new Date(l.time).toLocaleTimeString();
+                const cls = 'level-' + (l.level || 'info').toLowerCase();
+                return '<div class="log-entry"><span class="log-time">' + t + '</span><span class="' + cls + '">[' + (l.level || 'INFO') + ']</span><span class="log-msg">' + l.message + '</span></div>';
+            }).join('');
+            logContainer.innerHTML = html;
+        }
+
+        function setupClearLogs() {
+            clearLogsBtn.addEventListener('click', function() {
+                logs = [];
+                renderLogs();
+            });
+        }
+
+        // ---- Upload ----
+        function setupUpload() {
+            uploadBox.addEventListener('click', function() {
+                fileInput.click();
+            });
+            uploadBox.addEventListener('dragover', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#1e90ff';
+                this.style.background = '#f0f7ff';
+            });
+            uploadBox.addEventListener('dragleave', function(e) {
+                this.style.borderColor = '#999';
+                this.style.background = '#fafafa';
+            });
+            uploadBox.addEventListener('drop', function(e) {
+                e.preventDefault();
+                this.style.borderColor = '#999';
+                this.style.background = '#fafafa';
+                if (e.dataTransfer.files.length) {
+                    handleFile(e.dataTransfer.files[0]);
+                }
+            });
+            fileInput.addEventListener('change', function() {
+                if (this.files.length) {
+                    handleFile(this.files[0]);
+                }
+            });
+        }
+
+        async function handleFile(file) {
+            if (!file.type.startsWith('image/')) {
+                alert('Need an image file');
+                return;
+            }
+
+            // Preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImg.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+
+            // Show result box
+            uploadBox.style.display = 'none';
+            resultBox.style.display = 'block';
+            predDigit.textContent = '...';
+            confText.textContent = '...';
+            confFill.style.width = '0%';
+            probsContainer.innerHTML = '';
+
+            try {
+                const form = new FormData();
+                form.append('file', file);
+                const res = await fetch(API + '/eg/predict', { method: 'POST', body: form });
+                const data = await res.json();
+
+                if (data.success) {
+                    predDigit.textContent = data.digit;
+                    const pct = (data.confidence * 100).toFixed(1);
+                    confText.textContent = pct + '%';
+                    confFill.style.width = pct + '%';
+
+                    if (data.probabilities) {
+                        renderProbs(data.probabilities);
+                    }
+                } else {
+                    predDigit.textContent = '✗';
+                    confText.textContent = data.error || 'Failed';
+                }
+            } catch (_) {
+                predDigit.textContent = '✗';
+                confText.textContent = 'Server error';
+            }
+        }
+
+        function renderProbs(probs) {
+            const max = Math.max(...probs);
+            let html = '';
+            probs.forEach((p, i) => {
+                const h = max > 0 ? (p / max) * 100 : 0;
+                html += '<div class="prob-bar"><div class="prob-fill" style="height:' + h + '%"></div><span>' + i + '</span></div>';
+            });
+            probsContainer.innerHTML = html;
+        }
+
+        function setupTestAgain() {
+            testAgain.addEventListener('click', function() {
+                resultBox.style.display = 'none';
+                uploadBox.style.display = 'block';
+                fileInput.value = '';
+                probsContainer.innerHTML = '';
+            });
+        }
+
+        // ---- WebSocket handler ----
+        window.onWebSocketMessage = function(data) {
+            if (data.type === 'request') {
+                addRequest(data.data);
+            } else if (data.type === 'log') {
+                addLog(data.data);
+            }
+        };
+
+        // ---- Start ----
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>

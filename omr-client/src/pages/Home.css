@@ -1,0 +1,33 @@
+/* src/pages/Home.css */
+
+.home {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: inherit;
+}
+
+.home__hero {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.home__title {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+.home__subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #4a688a;
+}
+
+.home__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+}

@@ -1,0 +1,81 @@
+/* src/components/features/Course/CourseList.css */
+
+.course-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: inherit;
+}
+
+.course-list__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+.course-list__title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1e3a5f;
+}
+
+/* Two cards per row */
+
+.course-list__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+@media (max-width: 640px) {
+    .course-list__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Card action buttons */
+
+.course-list__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #4a688a;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.course-list__action:hover {
+    background: #eaf2fd;
+    border-color: #cfe0f5;
+    color: #1d4ed8;
+}
+
+.course-list__action:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+.course-list__action--danger {
+    color: #b91c1c;
+}
+
+.course-list__action--danger:hover {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #b91c1c;
+}
+
+/* Footer meta */
+
+.course-list__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}

@@ -1,0 +1,57 @@
+/* src/components/common/SearchForm.css */
+
+.search-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: #ffffff;
+    border: 1px solid #cfe0f5;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+.search-form__field {
+    flex: 1 1 180px;
+    min-width: 140px;
+}
+
+/* Select — styled to match Input's field */
+
+.search-form__label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e3a5f;
+    margin-bottom: 0.25rem;
+}
+
+.search-form__select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #1e293b;
+    background: #ffffff;
+    border: 1px solid #b6cbe5;
+    border-radius: 4px;
+}
+
+.search-form__select:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.search-form__select:disabled {
+    background: #f1f5fb;
+    color: #8aa3c0;
+    cursor: not-allowed;
+}
+
+.search-form__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}

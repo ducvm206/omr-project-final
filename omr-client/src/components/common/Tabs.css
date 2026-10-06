@@ -1,0 +1,115 @@
+/* src/components/common/Tabs.css */
+
+.tabs {
+    display: flex;
+    flex-direction: column;
+    font-family: inherit;
+}
+
+.tabs__list {
+    display: flex;
+    align-items: stretch;
+    gap: 0.25rem;
+    border-bottom: 1px solid #e5eefb;
+}
+
+/* Line variant */
+
+.tabs--line .tabs__tab {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #4a688a;
+    padding: 0.55rem 0.9rem;
+    margin-bottom: -1px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: inherit;
+}
+
+.tabs--line .tabs__tab:not(:disabled):hover {
+    color: #1d4ed8;
+}
+
+.tabs--line .tabs__tab--active {
+    color: #1d4ed8;
+    border-bottom-color: #2563eb;
+}
+
+/* Pill variant */
+
+.tabs--pill .tabs__list {
+    border-bottom: none;
+    gap: 0.25rem;
+    background: #f5f8fd;
+    padding: 0.25rem;
+    border-radius: 6px;
+}
+
+.tabs--pill .tabs__tab {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #1e3a5f;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: inherit;
+}
+
+.tabs--pill .tabs__tab:not(:disabled):hover {
+    background: #eaf2fd;
+    color: #1d4ed8;
+}
+
+.tabs--pill .tabs__tab--active {
+    background: #ffffff;
+    border-color: #b6cbe5;
+    color: #1d4ed8;
+}
+
+/* Shared states */
+
+.tabs__tab:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.tabs__tab:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Full width */
+
+.tabs--full .tabs__list {
+    display: flex;
+}
+
+.tabs--full .tabs__tab {
+    flex: 1 1 0;
+    justify-content: center;
+}
+
+/* Panel */
+
+.tabs__panel {
+    padding: 1rem 0;
+    font-size: 0.9rem;
+    color: #1e293b;
+}
+
+.tabs__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}

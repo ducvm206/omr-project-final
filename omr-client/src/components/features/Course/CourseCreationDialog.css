@@ -1,0 +1,17 @@
+/* src/components/features/Course/CourseCreationDialog.css */
+
+.course-dialog__form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+}
+
+.course-dialog__error {
+    padding: 0.5rem 0.7rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 4px;
+    color: #b91c1c;
+    font-size: 0.82rem;
+    line-height: 1.4;
+}

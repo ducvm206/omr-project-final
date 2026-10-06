@@ -1,0 +1,87 @@
+/* src/components/features/Template/TemplatePreviewPanel.css */
+
+.template-preview {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    padding: 1.1rem 1.25rem 1.25rem;
+    background: #ffffff;
+    border: 1px solid #cfe0f5;
+    border-radius: 6px;
+    font-family: inherit;
+}
+
+/* Header */
+
+.template-preview__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.template-preview__heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+.template-preview__heading-icon {
+    color: #dc2626; /* PDF red */
+    font-size: 1.05rem;
+    flex-shrink: 0;
+}
+
+.template-preview__name {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Field list */
+
+.template-preview__fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.6rem 1rem;
+    margin: 0;
+}
+
+.template-preview__field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.5rem 0.65rem;
+    background: #f8fbff;
+    border: 1px solid #e5eefb;
+    border-radius: 4px;
+}
+
+.template-preview__field dt {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: #4a688a;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.template-preview__field-icon {
+    font-size: 0.72rem;
+    color: #8aa3c0;
+}
+
+.template-preview__field dd {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #1e3a5f;
+    font-variant-numeric: tabular-nums;
+}

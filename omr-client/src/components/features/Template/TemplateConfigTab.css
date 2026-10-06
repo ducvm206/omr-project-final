@@ -1,0 +1,34 @@
+/* src/components/features/Template/TemplateConfigTab.css */
+
+.template-config-tab {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 1.25rem;
+    align-items: start;
+    font-family: inherit;
+}
+
+/* Pane wrapper — keeps each column's height independent. */
+.template-config-tab__pane {
+    min-width: 0;
+}
+
+/* Empty preview placeholder */
+.template-config-tab__empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    padding: 1rem;
+    background: #f8fbff;
+    border: 1px dashed #cfe0f5;
+    border-radius: 6px;
+    box-sizing: border-box;
+}
+
+/* Stack on narrow screens */
+@media (max-width: 860px) {
+    .template-config-tab {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,103 @@
+/* src/components/common/TextArea.css */
+
+.textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-family: inherit;
+}
+
+.textarea--full {
+    width: 100%;
+}
+
+.textarea__label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e3a5f;
+}
+
+.textarea__required {
+    color: #dc2626;
+}
+
+.textarea__wrapper {
+    position: relative;
+    display: flex;
+}
+
+.textarea__field {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.45rem 0.6rem;
+    font-size: 0.9rem;
+    font-family: inherit;
+    color: #1e293b;
+    background: #ffffff;
+    border: 1px solid #b6cbe5;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 4.5rem;
+    line-height: 1.5;
+}
+
+.textarea__field::placeholder {
+    color: #8aa3c0;
+}
+
+.textarea__field:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.textarea__field:disabled {
+    background: #f1f5fb;
+    color: #8aa3c0;
+    cursor: not-allowed;
+    resize: none;
+}
+
+/* When a counter is present, leave room on the right of the last line. */
+.textarea__wrapper:has(.textarea__count) .textarea__field {
+    padding-bottom: 1.6rem;
+}
+
+/* Error state */
+
+.textarea--error .textarea__field {
+    border-color: #dc2626;
+}
+
+.textarea--error .textarea__field:focus {
+    border-color: #dc2626;
+}
+
+.textarea__error {
+    font-size: 0.78rem;
+    color: #dc2626;
+    line-height: 1.4;
+}
+
+.textarea__hint {
+    font-size: 0.78rem;
+    color: #4a688a;
+    line-height: 1.4;
+}
+
+/* Counter */
+
+.textarea__count {
+    position: absolute;
+    right: 0.55rem;
+    bottom: 0.4rem;
+    font-size: 0.72rem;
+    color: #8aa3c0;
+    pointer-events: none;
+    background: #ffffff;
+    padding: 0 0.2rem;
+    border-radius: 2px;
+}
+
+.textarea--disabled .textarea__count {
+    background: #f1f5fb;
+}

@@ -1,0 +1,15 @@
+/* src/components/layout/Layout.css */
+
+.layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fbff;
+    font-family: inherit;
+}
+
+.layout__content {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 1.5rem;
+    box-sizing: border-box;
+}

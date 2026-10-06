@@ -1,0 +1,191 @@
+/* src/components/features/Exam/ManualExamCreator.css */
+
+.manual-creator {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    font-family: inherit;
+}
+
+.manual-creator__empty {
+    padding: 1rem;
+    background: #f8fbff;
+    border: 1px dashed #cfe0f5;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #4a688a;
+    text-align: center;
+}
+
+/* Variant block */
+
+.manual-creator__variant {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 0.9rem 1rem;
+    background: #ffffff;
+    border: 1px solid #cfe0f5;
+    border-radius: 6px;
+}
+
+.manual-creator__variant-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid #e5eefb;
+}
+
+.manual-creator__variant-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #1e3a5f;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Sections */
+
+.manual-creator__section {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.manual-creator__section-title {
+    margin: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #4a688a;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* MCQ grid */
+
+.manual-creator__mcq-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.35rem;
+}
+
+.manual-creator__mcq-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.45rem;
+    background: #f8fbff;
+    border: 1px solid #e5eefb;
+    border-radius: 4px;
+}
+
+.manual-creator__q-num {
+    flex-shrink: 0;
+    width: 1.6rem;
+    text-align: right;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #4a688a;
+    font-variant-numeric: tabular-nums;
+}
+
+.manual-creator__options {
+    display: inline-flex;
+    gap: 0.2rem;
+}
+
+.manual-creator__option {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #b6cbe5;
+    border-radius: 4px;
+    color: #1e3a5f;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.manual-creator__option:hover:not(:disabled) {
+    background: #eaf2fd;
+    border-color: #2563eb;
+    color: #1d4ed8;
+}
+
+.manual-creator__option--active {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: #ffffff;
+}
+
+.manual-creator__option--active:hover:not(:disabled) {
+    background: #1d4ed8;
+    border-color: #1d4ed8;
+}
+
+.manual-creator__option:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.manual-creator__option:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Written list */
+
+.manual-creator__written-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.35rem;
+}
+
+.manual-creator__written-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.3rem 0.45rem;
+    background: #f8fbff;
+    border: 1px solid #e5eefb;
+    border-radius: 4px;
+}
+
+.manual-creator__written-input {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.25rem 0.4rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: #1e293b;
+    background: #ffffff;
+    border: 1px solid #b6cbe5;
+    border-radius: 4px;
+    font-variant-numeric: tabular-nums;
+    text-align: center;
+}
+
+.manual-creator__written-input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.manual-creator__written-input:disabled {
+    background: #f1f5fb;
+    color: #8aa3c0;
+    cursor: not-allowed;
+}
+
+.manual-creator__written-input::placeholder {
+    color: #b6cbe5;
+}

@@ -1,0 +1,475 @@
+/* ============================================================
+   OMR Control Panel - Industrial / Crude
+   ============================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #d8d8d8;
+    color: #000;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    padding: 12px;
+    min-height: 100vh;
+}
+
+/* ---- Panel ---- */
+.panel {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+/* ---- Header ---- */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #ffffff;
+    border: 3px solid #000;
+    margin-bottom: 10px;
+}
+
+header h1 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #000;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+header h1 .accent {
+    color: #1e90ff;
+    font-weight: 900;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background: #999;
+    border: 2px solid #000;
+}
+
+.dot.online {
+    background: #00c000;
+}
+
+.dot.offline {
+    background: #e00000;
+}
+
+/* ---- Grid (3 columns) ---- */
+.grid {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr;
+    gap: 10px;
+    align-items: start;
+}
+
+/* ---- Cards ---- */
+.col {
+    min-width: 0;
+}
+
+.card {
+    background: #ffffff;
+    border: 3px solid #000;
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: #1e90ff;
+    border-bottom: 3px solid #000;
+}
+
+.card-header .icon {
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 900;
+}
+
+.card-header h2 {
+    font-size: 11px;
+    font-weight: 700;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.card-header .btn-clear {
+    margin-left: auto;
+    background: #ffffff;
+    border: 2px solid #000;
+    color: #000;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 900;
+    padding: 0 8px;
+    line-height: 18px;
+    font-family: inherit;
+}
+
+.card-header .btn-clear:hover {
+    background: #e00000;
+    color: #ffffff;
+}
+
+.card-body {
+    padding: 10px;
+}
+
+/* ---- Status stats ---- */
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dashed #888;
+    font-size: 12px;
+}
+
+.stat-row:last-child {
+    border-bottom: none;
+}
+
+.stat-row .label {
+    color: #444;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.stat-row .value {
+    color: #000;
+    font-weight: 700;
+}
+
+.stat-row .value.mono {
+    font-size: 11px;
+    color: #1e90ff;
+    background: #e8e8e8;
+    padding: 1px 6px;
+    border: 1px solid #000;
+}
+
+/* ---- Upload box ---- */
+.upload-box {
+    border: 3px dashed #666;
+    padding: 30px 16px;
+    text-align: center;
+    cursor: pointer;
+    background: #f0f0f0;
+}
+
+.upload-box:hover {
+    border-color: #1e90ff;
+    background: #ddeeff;
+}
+
+.upload-box .upload-icon {
+    display: block;
+    font-size: 34px;
+    color: #1e90ff;
+    margin-bottom: 8px;
+    font-weight: 900;
+    line-height: 1;
+}
+
+.upload-box p {
+    color: #000;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.upload-box .hint {
+    display: block;
+    font-size: 10px;
+    color: #666;
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.upload-box input {
+    display: none;
+}
+
+/* ---- Result box ---- */
+.result-box {
+    margin-top: 10px;
+    border-top: 3px solid #000;
+    padding-top: 10px;
+}
+
+.result-preview {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.result-preview img {
+    max-width: 96px;
+    max-height: 96px;
+    border: 3px solid #000;
+    background: #f0f0f0;
+    image-rendering: pixelated;
+}
+
+.result-digit {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    padding: 4px 10px;
+    background: #ddeeff;
+    border: 3px solid #1e90ff;
+}
+
+.result-digit .digit-label {
+    color: #000;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.result-digit .digit-value {
+    font-size: 40px;
+    font-weight: 900;
+    color: #1e90ff;
+    line-height: 1;
+}
+
+.result-conf {
+    margin-bottom: 10px;
+}
+
+.result-conf .conf-label {
+    display: block;
+    font-size: 10px;
+    color: #000;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.conf-bar {
+    height: 18px;
+    background: #c0c0c0;
+    border: 3px solid #000;
+    overflow: hidden;
+}
+
+.conf-fill {
+    height: 100%;
+    width: 0%;
+    background: #1e90ff;
+    transition: width 0.4s ease;
+}
+
+.conf-value {
+    font-size: 12px;
+    color: #000;
+    display: block;
+    margin-top: 4px;
+    font-weight: 900;
+}
+
+/* ---- Probabilities ---- */
+.result-probs {
+    display: flex;
+    gap: 4px;
+    height: 140px;
+    align-items: flex-end;
+    margin: 10px 0;
+    padding: 6px;
+    border: 3px solid #000;
+    background: #f0f0f0;
+}
+
+.prob-bar {
+    flex: 1;
+    background: #d0d0d0;
+    height: 100%;
+    position: relative;
+    min-height: 30px;
+    border: 2px solid #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.prob-fill {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #1e90ff;
+    border-top: 2px solid #000;
+    transition: height 0.3s ease;
+}
+
+.prob-bar span {
+    position: relative;
+    text-align: center;
+    font-size: 11px;
+    color: #000;
+    font-weight: 900;
+    z-index: 2;
+    background: #ffffff;
+    border: 1px solid #000;
+    line-height: 14px;
+    margin: 0 1px 1px 1px;
+}
+
+/* ---- Test button ---- */
+.btn-test {
+    background: #ffffff;
+    border: 3px solid #000;
+    color: #000;
+    padding: 6px 16px;
+    cursor: pointer;
+    font-size: 11px;
+    font-weight: 900;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+}
+
+.btn-test:hover {
+    background: #1e90ff;
+    color: #ffffff;
+}
+
+.btn-test:active {
+    background: #000;
+    color: #ffffff;
+}
+
+/* ---- Logs ---- */
+.log-container {
+    max-height: 400px;
+    overflow-y: auto;
+    font-size: 11px;
+    background: #f0f0f0;
+    border: 3px solid #000;
+    padding: 4px;
+}
+
+.log-empty {
+    text-align: center;
+    color: #666;
+    padding: 30px 0;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.log-entry {
+    display: flex;
+    gap: 8px;
+    padding: 3px 6px;
+    border-bottom: 1px dashed #aaa;
+    align-items: baseline;
+    font-size: 11px;
+    line-height: 1.4;
+}
+
+.log-entry:last-child {
+    border-bottom: none;
+}
+
+.log-entry:hover {
+    background: #ddeeff;
+}
+
+.log-time {
+    color: #666;
+    flex-shrink: 0;
+    font-size: 10px;
+}
+
+.log-msg {
+    color: #000;
+    word-break: break-all;
+}
+
+.level-info {
+    color: #1e90ff;
+    font-weight: 900;
+}
+.level-warning {
+    color: #d97706;
+    font-weight: 900;
+}
+.level-error {
+    color: #e00000;
+    font-weight: 900;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: #c0c0c0;
+    border-left: 2px solid #000;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e90ff;
+    border: 2px solid #000;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #000;
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+    .col:last-child {
+        grid-column: span 2;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .col:last-child {
+        grid-column: span 1;
+    }
+    header {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+    body {
+        padding: 8px;
+    }
+}

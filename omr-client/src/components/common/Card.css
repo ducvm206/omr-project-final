@@ -1,0 +1,131 @@
+/* src/components/common/Card.css */
+
+.card {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #cfe0f5;
+    border-radius: 6px;
+    font-family: inherit;
+    color: #1e293b;
+    box-sizing: border-box;
+}
+
+/* Variants */
+
+.card--flat {
+    border: none;
+    background: #f5f8fd;
+}
+
+.card--plain {
+    border: none;
+    background: transparent;
+}
+
+/* Padding */
+
+.card--padding-none {
+    padding: 0;
+}
+
+.card--padding-sm {
+    padding: 0.5rem 0.75rem;
+}
+
+.card--padding-md {
+    padding: 0.9rem 1rem;
+}
+
+.card--padding-lg {
+    padding: 1.25rem 1.5rem;
+}
+
+/* Clickable */
+
+.card--clickable {
+    cursor: pointer;
+}
+
+.card--clickable:hover {
+    border-color: #2563eb;
+}
+
+.card--clickable:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+}
+
+/* Disabled */
+
+.card--disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Header */
+
+.card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin-bottom: 0.6rem;
+}
+
+.card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #2563eb;
+    font-size: 1.1rem;
+    line-height: 1;
+    padding-top: 0.1rem;
+}
+
+.card__heading {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.card__title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1e3a5f;
+    line-height: 1.25;
+    word-break: break-word;
+}
+
+.card__subtitle {
+    font-size: 0.8rem;
+    color: #4a688a;
+    margin-top: 0.15rem;
+    word-break: break-word;
+}
+
+.card__actions {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+/* Body */
+
+.card__body {
+    flex: 1 1 auto;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Footer */
+
+.card__footer {
+    margin-top: 0.75rem;
+    padding-top: 0.6rem;
+    border-top: 1px solid #e5eefb;
+    font-size: 0.85rem;
+    color: #4a688a;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
